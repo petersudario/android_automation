@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d63f6b5-127e-4682-b73a-704c58e0e5d2" name="Changes" comment="Screen detection (end)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screen.py" beforeDir="false" afterPath="$PROJECT_DIR$/screen.py" afterDir="false" />
-    </list>
+    <list default="true" id="2d63f6b5-127e-4682-b73a-704c58e0e5d2" name="Changes" comment="Dont draw contours" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +91,7 @@
       <workItem from="1705768629651" duration="670000" />
       <workItem from="1705789129906" duration="12935000" />
       <workItem from="1705802978438" duration="591000" />
-      <workItem from="1705803582455" duration="20086000" />
+      <workItem from="1705803582455" duration="20393000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -120,7 +117,31 @@
       <option name="project" value="LOCAL" />
       <updated>1705823114075</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Exception treatment for screen">
+      <option name="closed" value="true" />
+      <created>1705823830603</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705823830603</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Exception treatment for screen">
+      <option name="closed" value="true" />
+      <created>1705823882135</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705823882135</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Dont draw contours">
+      <option name="closed" value="true" />
+      <created>1705824085691</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705824085691</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,7 +151,9 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="Screen detection" />
     <MESSAGE value="Screen detection (end)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Screen detection (end)" />
+    <MESSAGE value="Exception treatment for screen" />
+    <MESSAGE value="Dont draw contours" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dont draw contours" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/adb_tester$frame.coverage" NAME="frame Coverage Results" MODIFIED="1705804583984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/core/abt_core" />
