@@ -26,9 +26,8 @@ class Screen:
             return
 
         target_window[0].activate()
-
-        while True:
-            try:
+        try:
+            while True:
                 x, y, width, height = target_window[0].left, target_window[0].top, target_window[0].width, \
                     target_window[0].height
 
@@ -60,7 +59,7 @@ class Screen:
                 key = cv2.waitKey(1)
                 if key == ord('q'):
                     break
-            except Exception as e:
-                print(e)
-
-        cv2.destroyAllWindows()
+        except Exception as e:
+            print(e)
+        finally:
+            cv2.destroyAllWindows()
