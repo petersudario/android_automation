@@ -2,14 +2,16 @@ import os
 import re
 import subprocess
 import configparser
+import time
+
 from screen import Screen
 
 
 class Device(object):
 
     def __init__(self, device_number):
+        self.screen = None
         self.device_number = device_number
-        self.screen = Screen(self, device_number)
 
     def connect(self):
 
@@ -18,6 +20,8 @@ class Device(object):
 
         ip = config.get("connection", f"device_ip_{self.device_number}")
         os.system("adb connect " + ip)
+        time.sleep(5)
+        self.screen = Screen(self, self.device_number)
 
     def disconnect(self):
         config = configparser.ConfigParser()
@@ -65,6 +69,6 @@ class Device(object):
                 else:
                     print("IP is not matching. Please try again after checking the device.conf file.")
             else:
-                print("IP Pattern not matched. Please try again")
+                print(f"IP did not match. Please try again")
         else:
             print("Error:", result.stderr)

@@ -13,7 +13,6 @@ class Screen:
         self.device_number = device_number
         self.model = device.get_model(device_number)
 
-
     def detect_images(self):
         window_title = f"{self.device_number}:{self.model}"
 
@@ -30,42 +29,38 @@ class Screen:
 
         while True:
             try:
-                # Get the position and size of the target window
                 x, y, width, height = target_window[0].left, target_window[0].top, target_window[0].width, \
                     target_window[0].height
 
-                # Capture the screen region corresponding to the target window
-                screenshot = pyautogui.screenshot(region=(x, y, width, height))
-                screenshot = np.array(screenshot)
+                background = pyautogui.screenshot(region=(x, y, width, height))
+                background = np.array(background)
+                background = cv2.cvtColor(background, cv2.COLOR_BGR2GRAY)
 
-                # Convert the screenshot to BGR format
-                frame = cv2.cvtColor(screenshot, cv2.COLOR_RGB2BGR)
+                frame = pyautogui.screenshot(region=(x, y, width, height))
+                frame = np.array(frame)
 
-                # Motion detection logic
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                blur = cv2.GaussianBlur(gray, (5, 5), 0)
-                _, thresh = cv2.threshold(blur, 20, 255, cv2.THRESH_BINARY)
-                dilated = cv2.dilate(thresh, None, iterations=3)
-                contours, _ = cv2.findContours(dilated, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+                diff = cv2.absdiff(background, gray)
+
+                thresh = cv2.threshold(diff, 30, 255, cv2.THRESH_BINARY)[1]
+                thresh = cv2.dilate(thresh, None, iterations=3)
+                contours, res = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
                 for contour in contours:
-                    (x, y, w, h) = cv2.boundingRect(contour)
-
-                    if cv2.contourArea(contour) < 900:
+                    if cv2.contourArea(contour) < 700:
                         continue
+                    (x, y, w, h) = cv2.boundingRect(contour)
                     cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                    cv2.putText(frame, "Status: {}".format('In motion'), (10, 20), cv2.FONT_HERSHEY_SIMPLEX,
+                    cv2.putText(frame, "Status: {}".format("Motion Detected"), (10, 20), cv2.FONT_HERSHEY_SIMPLEX,
                                 1, (0, 0, 255), 3)
+                cv2.drawContours(frame, contours, -1, (0, 255, 0), 2)
 
-                cv2.imshow("Motion Detection", frame)
+                cv2.imshow("Motion detection", frame)
 
-                # Break the loop if 'Esc' key is pressed
-                if cv2.waitKey(1) & 0xFF == ord('q'):
+                key = cv2.waitKey(1)
+                if key == ord('q'):
                     break
-
             except Exception as e:
-                print(f"Error: {e}")
-                break
+                print(e)
 
-        # Release resources
         cv2.destroyAllWindows()
