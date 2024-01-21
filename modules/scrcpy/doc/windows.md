@@ -85,7 +85,7 @@ If you plan to always use the same arguments, create a file `myscrcpy.bat`
 example:
 
 ```bash
-scrcpy --prefer-text --turn-screen-off --stay-awake
+scrcpy --prefer-text --turn-screen.py-off --stay-awake
 ```
 
 [show file extensions]: https://www.howtogeek.com/205086/beginner-how-to-make-windows-show-file-extensions/
