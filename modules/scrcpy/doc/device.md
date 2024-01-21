@@ -25,7 +25,7 @@ It is possible to turn the device screen off while mirroring on start with a
 command-line option:
 
 ```bash
-scrcpy --turn-screen-off
+scrcpy --turn-screen.py-off
 scrcpy -S   # short version
 ```
 
@@ -42,7 +42,7 @@ basis). The physical `POWER` button will still cause the screen to be turned on.
 It can also be useful to prevent the device from sleeping:
 
 ```bash
-scrcpy --turn-screen-off --stay-awake
+scrcpy --turn-screen.py-off --stay-awake
 scrcpy -Sw   # short version
 ```
 
