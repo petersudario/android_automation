@@ -3,7 +3,7 @@ import re
 import subprocess
 import configparser
 import time
-
+from controller import Controller
 from screen import Screen
 
 
@@ -11,8 +11,10 @@ class Device(object):
 
     def __init__(self, device_number):
         self.screen = None
+        self.controller = None
         self.device_number = device_number
 
+    # Execute before anything
     def connect(self):
 
         config = configparser.ConfigParser()
@@ -22,6 +24,7 @@ class Device(object):
         os.system("adb connect " + ip)
         time.sleep(5)
         self.screen = Screen(self, self.device_number)
+        self.controller = Controller(self, self.device_number)
 
     def disconnect(self):
         config = configparser.ConfigParser()
@@ -49,7 +52,6 @@ class Device(object):
                 config.read("device.conf")
 
                 ip_address = match_ip.group(0)
-                print("IP Address from Command Output:", ip_address)
 
                 real_ip = config.get("connection", f"device_ip_{device_number}")
 
@@ -61,14 +63,15 @@ class Device(object):
 
                     if match_model:
                         device_model = match_model.group(1)
-                        print("Device Model:", device_model)
+                        print("Model found: ", device_model)
 
                         return device_model
                     else:
                         print("Model could not be found")
                 else:
-                    print("IP is not matching. Please try again after checking the device.conf file.")
+                    print("IP does not match. Have you configured the right device?")
             else:
-                print(f"IP did not match. Please try again")
+                print(f"IP did not match pattern. Please try again")
         else:
             print("Error:", result.stderr)
+
