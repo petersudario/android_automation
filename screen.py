@@ -4,6 +4,7 @@ import numpy as np
 import pyautogui
 import pygetwindow as gw
 import cv2
+import time
 
 
 class Screen:
@@ -13,7 +14,7 @@ class Screen:
         self.device_number = device_number
         self.model = device.get_model(device_number)
 
-    def detect_images(self):
+    def image_detection(self):
         window_title = f"{self.device_number}:{self.model}"
 
         os.system(".\\modules\\scrcpy\\scrcpy-noconsole.vbs --window-title=" + window_title)
@@ -75,3 +76,4 @@ class Screen:
             print(e)
         finally:
             cv2.destroyAllWindows()
+
