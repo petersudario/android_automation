@@ -41,7 +41,7 @@ class Screen:
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 diff = cv2.absdiff(background, gray)
 
-                thresh = cv2.threshold(diff, 30, 255, cv2.THRESH_BINARY)[1]
+                thresh = cv2.threshold(diff, 20, 255, cv2.THRESH_BINARY)[1]
                 thresh = cv2.dilate(thresh, None, iterations=3)
                 contours, res = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -52,7 +52,6 @@ class Screen:
                     cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
                     cv2.putText(frame, "Status: {}".format("Motion Detected"), (10, 20), cv2.FONT_HERSHEY_SIMPLEX,
                                 1, (0, 0, 255), 3)
-                cv2.drawContours(frame, contours, -1, (0, 255, 0), 2)
 
                 cv2.imshow("Motion detection", frame)
 
